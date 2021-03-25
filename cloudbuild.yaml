@@ -9,7 +9,7 @@ steps:
   args: ['push', 'eu.gcr.io/$PROJECT_ID/events-app-internal']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'events-app-internal', '--image', 'eu.gcr.io/$PROJECT_ID/events-app-internal', '--port', '8082' '--region', 'europe-west3', '--platform', 'managed']
+  args: ['run', 'deploy', 'events-app-internal', '--image', 'eu.gcr.io/$PROJECT_ID/events-app-internal', '--port', '8082', '--region', 'europe-west3', '--platform', 'managed']
 images:
  - 'eu.gcr.io/$PROJECT_ID/events-app-internal:$COMMIT_SHA'
 tags: ['events-app-internal']
