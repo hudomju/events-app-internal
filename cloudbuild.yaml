@@ -1,0 +1,13 @@
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/hudomju/events-app-internal']
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/events-app-internal', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'eu.gcr.io/$PROJECT_ID/events-app-internal']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'events-app-internal', '--image', 'eu.gcr.io/$PROJECT_ID/events-app-internal', '--region', 'europe-west3', '--platform', 'managed']
+tags: ['pdf_to_image_service']
